@@ -189,11 +189,13 @@
   
   .video-player {
     width: 100%;
-    height: 190px;
-    object-fit: cover;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: contain;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
     transition: transform 0.3s ease;
+    background: #000;
   }
   
   .video-wrapper:hover .video-player {
@@ -255,10 +257,6 @@
       right: 20px;
     }
     
-    .video-player {
-      height: 170px;
-    }
-    
     .video-header {
       padding: 14px 18px;
     }
@@ -270,10 +268,6 @@
       right: 16px;
       left: 16px;
       bottom: 16px;
-    }
-    
-    .video-player {
-      height: 160px;
     }
     
     .overlay-button {
