@@ -151,7 +151,7 @@ const jsonLd = {
       const images = postContent.querySelectorAll('img');
       const allElements = postContent.querySelectorAll('p, img, h1, h2, h3, h4, h5, h6');
       
-      if (allElements.length > 4) {
+      if (allElements.length > 2) {
         // Find the middle position (around 40-60% of content)
         const middleIndex = Math.floor(allElements.length * 0.5);
         const targetElement = allElements[middleIndex];
