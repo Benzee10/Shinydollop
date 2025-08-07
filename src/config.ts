@@ -8,8 +8,8 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "Fuwari",
-	subtitle: "Demo Site",
+	title: "Shiny Dollop",
+	subtitle: "Collection of 🔥 Galleries",
 	lang: "en", // Language code, e.g. 'en', 'zh-CN', 'ja', etc.
 	themeColor: {
 		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -17,7 +17,7 @@ export const siteConfig: SiteConfig = {
 	},
 	banner: {
 		enable: false,
-		src: "assets/images/demo-banner.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		src: "", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
 			enable: false, // Display the credit text of the banner image
@@ -26,7 +26,7 @@ export const siteConfig: SiteConfig = {
 		},
 	},
 	toc: {
-		enable: true, // Display the table of contents on the right side of the post
+		enable: false, // Display the table of contents on the right side of the post
 		depth: 2, // Maximum heading depth to show in the table, from 1 to 3
 	},
 	favicon: [
@@ -45,8 +45,8 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		{
-			name: "GitHub",
-			url: "https://github.com/saicaca/fuwari", // Internal links should not include the base path, as it is automatically added
+			name: "Sex Chat",
+			url: "https://redirect01-z56s-git-main-benzee10000s-projects.vercel.app/", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
@@ -64,16 +64,7 @@ export const profileConfig: ProfileConfig = {
 			// `pnpm add @iconify-json/<icon-set-name>`
 			url: "https://twitter.com",
 		},
-		{
-			name: "Steam",
-			icon: "fa6-brands:steam",
-			url: "https://store.steampowered.com",
-		},
-		{
-			name: "GitHub",
-			icon: "fa6-brands:github",
-			url: "https://github.com/saicaca/fuwari",
-		},
+	
 	],
 };
 
