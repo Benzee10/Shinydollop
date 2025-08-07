@@ -103,14 +103,14 @@ const jsonLd = {
             }
 
             <!-- Top Banner Ad -->
-            <BannerAd position="top" class="onload-animation" />
+            <BannerAd position="top" class="onload-animation" imageUrl="https://i.postimg.cc/66Y8vd0q/30a866e7c4c898f5a03029f2e783e62c-9.jpg" />
 
             <Markdown class="mb-6 markdown-content onload-animation" id="post-content">
                 <Content />
             </Markdown>
 
             <!-- Bottom Banner Ad -->
-            <BannerAd position="bottom" class="onload-animation" />
+            <BannerAd position="bottom" class="onload-animation" imageUrl="https://i.postimg.cc/rsFzHm8q/09eabe2b42504531cf6aa96a87f6dd83-26.jpg" />
 
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
@@ -165,11 +165,14 @@ const jsonLd = {
              rel="noopener noreferrer"
              class="banner-ad-link block w-full max-w-4xl transition-transform hover:scale-[1.02] active:scale-[0.98]"
              aria-label="Banner Advertisement - middle">
-            <div class="banner-ad w-full h-32 md:h-40 bg-gradient-to-r from-green-500 to-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl md:text-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="text-center px-4">
-                <div class="mb-2">✨ Special Offers</div>
-                <div class="text-sm md:text-base opacity-90">Don't Miss Out - Click Here</div>
-              </div>
+            <div class="banner-ad w-full h-40 md:h-48 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 relative">
+              <img 
+                src="https://i.postimg.cc/tJS7GjTW/140e925065074859ca5d7721f5bb3883-20.jpg" 
+                alt="Advertisement" 
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-black/10 hover:bg-black/5 transition-all duration-300"></div>
             </div>
           </a>
         `;
