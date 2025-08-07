@@ -37,11 +37,15 @@
   onMount(() => {
     // Load random video
     currentVideoUrl = getRandomVideo();
+    console.log('VideoWidget mounted, video URL:', currentVideoUrl);
+    console.log('Widget visible:', isVisible);
     
     // Auto-play video when component mounts
-    if (videoElement) {
-      videoElement.play().catch(console.error);
-    }
+    setTimeout(() => {
+      if (videoElement) {
+        videoElement.play().catch(console.error);
+      }
+    }, 100);
   });
 </script>
 
