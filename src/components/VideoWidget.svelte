@@ -2,7 +2,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   
-  let isVisible = true;
+  let isVisible = false;
   let isMinimized = false;
   let videoElement: HTMLVideoElement;
   
@@ -37,15 +37,18 @@
   onMount(() => {
     // Load random video
     currentVideoUrl = getRandomVideo();
-    console.log('VideoWidget mounted, video URL:', currentVideoUrl);
-    console.log('Widget visible:', isVisible);
     
-    // Auto-play video when component mounts
+    // Show widget after 3 seconds
     setTimeout(() => {
-      if (videoElement) {
-        videoElement.play().catch(console.error);
-      }
-    }, 100);
+      isVisible = true;
+      
+      // Auto-play video when widget becomes visible
+      setTimeout(() => {
+        if (videoElement) {
+          videoElement.play().catch(console.error);
+        }
+      }, 100);
+    }, 3000);
   });
 </script>
 
