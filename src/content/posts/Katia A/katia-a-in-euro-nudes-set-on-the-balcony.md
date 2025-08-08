@@ -2,7 +2,7 @@
 title: "Katia A in Euro Nudes set On The Balcony"
 description: "Basking in natural light, Katia A turns a quiet balcony into an intimate stage of sensual elegance and effortless beauty."
 published: 2025-08-08T12:13:00
-image: "https://cdn.elitebabes.com/content/250704/0006-01_1200.jpg"
+image: "https://cdn.elitebabes.com/content/250516/0004-01_1200.jpg"
 category: Euro Nudes
 tags: ["Katia A", "On The Balcony", "Euro Nudes", "Erotic", "Outdoor Nude", "Balcony Fantasy"]
 ---
