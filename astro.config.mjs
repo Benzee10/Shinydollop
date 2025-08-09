@@ -29,10 +29,6 @@ export default defineConfig({
 	site: "https://fuwari.vercel.app/",
 	base: "/",
 	trailingSlash: "always",
-	server: {
-		host: "0.0.0.0",
-		port: 4321
-	},
 	integrations: [
 		tailwind({
 			nesting: true,
