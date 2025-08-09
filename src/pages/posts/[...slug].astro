@@ -12,7 +12,7 @@ import { licenseConfig } from "src/config";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import PostMetadata from "../../components/PostMeta.astro";
 import BannerAd from "../../components/BannerAd.astro";
-import SimilarPosts from "../../components/SimilarPosts.astro";
+import RelatedGallery from "../../components/RelatedGallery.astro";
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 import { findSimilarPosts } from "../../utils/similar-posts";
@@ -122,8 +122,8 @@ const jsonLd = {
         </div>
     </div>
 
-    <!-- Similar Posts Section -->
-    <SimilarPosts similarPosts={similarPosts} class="mb-8 onload-animation" />
+    <!-- Related Gallery Section -->
+    <RelatedGallery similarPosts={similarPosts} class="mb-8 onload-animation" />
 
     <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full">
         <a href={entry.data.nextSlug ? getPostUrlBySlug(entry.data.nextSlug) : "#"}
