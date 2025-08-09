@@ -12,21 +12,26 @@ import { licenseConfig } from "src/config";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import PostMetadata from "../../components/PostMeta.astro";
 import BannerAd from "../../components/BannerAd.astro";
+import SimilarPosts from "../../components/SimilarPosts.astro";
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
+import { findSimilarPosts } from "../../utils/similar-posts";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
 	return blogEntries.map((entry) => ({
 		params: { slug: entry.slug },
-		props: { entry },
+		props: { entry, allPosts: blogEntries },
 	}));
 }
 
-const { entry } = Astro.props;
+const { entry, allPosts } = Astro.props;
 const { Content, headings } = await entry.render();
 
 const { remarkPluginFrontmatter } = await entry.render();
+
+// Find similar posts
+const similarPosts = findSimilarPosts(entry, allPosts, 3);
 
 const jsonLd = {
 	"@context": "https://schema.org",
@@ -116,6 +121,9 @@ const jsonLd = {
 
         </div>
     </div>
+
+    <!-- Similar Posts Section -->
+    <SimilarPosts similarPosts={similarPosts} class="mb-8 onload-animation" />
 
     <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full">
         <a href={entry.data.nextSlug ? getPostUrlBySlug(entry.data.nextSlug) : "#"}
