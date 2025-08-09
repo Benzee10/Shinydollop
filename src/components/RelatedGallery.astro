@@ -11,7 +11,14 @@ interface Props {
 
 const { similarPosts, class: className = "" } = Astro.props;
 
-if (similarPosts.length === 0) return null;
+// Debug logging (remove this later)
+console.log('RelatedGallery - Similar posts count:', similarPosts?.length || 0);
+console.log('RelatedGallery - Similar posts:', similarPosts);
+
+if (!similarPosts || similarPosts.length === 0) {
+  console.log('RelatedGallery - No similar posts found, component will not render');
+  return null;
+}
 ---
 
 <div class={`related-gallery-container ${className}`}>

@@ -1,4 +1,3 @@
-
 import type { CollectionEntry } from "astro:content";
 
 export interface SimilarPost {
@@ -10,42 +9,55 @@ export interface SimilarPost {
 export function findSimilarPosts(
   currentPost: CollectionEntry<"posts">,
   allPosts: CollectionEntry<"posts">[],
-  maxResults: number = 3
+  limit: number = 3
 ): SimilarPost[] {
+  if (!currentPost || !allPosts || allPosts.length === 0) {
+    return [];
+  }
+
   const currentTags = currentPost.data.tags || [];
   const currentCategory = currentPost.data.category;
-  
-  const similarPosts = allPosts
-    .filter(post => post.slug !== currentPost.slug) // Exclude current post
-    .filter(post => !post.data.draft) // Exclude draft posts
-    .map(post => {
-      let similarity = 0;
-      const postTags = post.data.tags || [];
-      
-      // Calculate tag similarity (weight: 2 points per matching tag)
-      const matchingTags = currentTags.filter(tag => postTags.includes(tag));
-      similarity += matchingTags.length * 2;
-      
-      // Calculate category similarity (weight: 3 points for same category)
-      if (currentCategory && post.data.category === currentCategory) {
-        similarity += 3;
-      }
-      
-      return {
-        slug: post.slug,
-        data: post.data,
-        similarity
-      };
-    })
-    .filter(post => post.similarity > 0) // Only include posts with some similarity
-    .sort((a, b) => {
-      // Sort by similarity score first, then by publication date
-      if (b.similarity !== a.similarity) {
-        return b.similarity - a.similarity;
-      }
-      return new Date(b.data.published).getTime() - new Date(a.data.published).getTime();
-    })
-    .slice(0, maxResults);
-    
-  return similarPosts;
+
+  // Filter out the current post and draft posts
+  const otherPosts = allPosts.filter(post => 
+    post.slug !== currentPost.slug && 
+    !post.data.draft
+  );
+
+  if (otherPosts.length === 0) {
+    return [];
+  }
+
+  // Calculate similarity scores
+  const similarPosts = otherPosts.map(post => {
+    let similarity = 0;
+    const postTags = post.data.tags || [];
+
+    // Category match gives high score
+    if (post.data.category === currentCategory) {
+      similarity += 3;
+    }
+
+    // Tag matches
+    const commonTags = currentTags.filter(tag => 
+      postTags.includes(tag)
+    );
+    similarity += commonTags.length;
+
+    // If no similarity found, give a small random score for variety
+    if (similarity === 0) {
+      similarity = Math.random() * 0.5;
+    }
+
+    return {
+      slug: post.slug,
+      data: post.data,
+      similarity
+    };
+  });
+
+  // Sort by similarity and limit results
+  return similarPosts
+    .sort((a, b) => b.similarity - a.similarity)
+    .slice(0, limit);
 }
