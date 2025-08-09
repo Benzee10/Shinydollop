@@ -2,7 +2,7 @@
 title: "Sasha Green in Stunning 18 set On The Lake Shore"
 description: "Sasha Green radiates serene beauty in ‘On The Lake Shore,’ where nature meets sensuality."
 published: 2025-08-09T16:21:00
-image: "https://cdn.elitebabes.com/content/250713/0007-18_1200.jpg"
+image: "https://cdn.elitebabes.com/content/250713/0007-01_1200.jpg"
 category: Stunning 18
 tags: ["Sasha Green", "On The Lake Shore", "Stunning 18", "Erotic", "Sensual", "Natural Beauty"]
 ---
