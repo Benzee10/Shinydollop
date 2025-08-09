@@ -1,4 +1,3 @@
-
 <script>
   import { onMount } from 'svelte';
 
@@ -48,18 +47,18 @@
       <div class="exit-popup-header">
         <button class="exit-close-btn" on:click={handleClose} aria-label="Close">×</button>
       </div>
-      
+
       <div class="exit-popup-body">
         <div class="exit-emoji">⚡</div>
         <h2>Wait! Don't Miss Out!</h2>
         <p class="exit-headline">You're about to miss something <em>incredible</em>...</p>
         <p class="exit-subtext">Get instant access to exclusive content that 99% of people never see!</p>
-        
+
         <button class="exit-unlock-btn" on:click={handleClick}>
           <span class="exit-btn-text">🚀 Get Instant Access</span>
           <div class="exit-btn-shine"></div>
         </button>
-        
+
         <p class="exit-warning">This offer disappears when you leave!</p>
       </div>
     </div>
@@ -258,11 +257,11 @@
       margin: 20px;
       max-width: none;
     }
-    
+
     h2 {
       font-size: 26px;
     }
-    
+
     .exit-unlock-btn {
       font-size: 18px;
       padding: 18px 30px;

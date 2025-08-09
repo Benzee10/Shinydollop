@@ -13,6 +13,9 @@ import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import PostMetadata from "../../components/PostMeta.astro";
 import BannerAd from "../../components/BannerAd.astro";
 import RelatedGallery from "../../components/RelatedGallery.astro";
+import InContentCTA from '../../components/InContentCTA.astro';
+import ScrollProgressCTA from '../../components/ScrollProgressCTA.svelte';
+import ImageOverlayCTA from '../../components/ImageOverlayCTA.astro';
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 import { findSimilarPosts } from "../../utils/similar-posts";
@@ -122,6 +125,9 @@ const jsonLd = {
         </div>
     </div>
 
+    <!-- New CTA Components -->
+    <InContentCTA type="premium" position="block" />
+
     <!-- Related Gallery Section -->
     <RelatedGallery similarPosts={similarPosts} class="mb-8 onload-animation" />
 
@@ -147,36 +153,39 @@ const jsonLd = {
         </a>
     </div>
 
+    <!-- Scroll Progress CTA -->
+    <ScrollProgressCTA client:load />
+
 </MainGridLayout>
 
 <script>
   import BannerAd from "../../components/BannerAd.astro";
-  
+
   document.addEventListener('DOMContentLoaded', function() {
     const postContent = document.getElementById('post-content');
     if (postContent) {
       const paragraphs = postContent.querySelectorAll('p');
       const images = postContent.querySelectorAll('img');
       const allElements = postContent.querySelectorAll('p, img, h1, h2, h3, h4, h5, h6');
-      
+
       if (allElements.length > 2) {
         // Find the middle position (around 40-60% of content)
         const middleIndex = Math.floor(allElements.length * 0.5);
         const targetElement = allElements[middleIndex];
-        
+
         // Create middle banner ad
         const middleBannerContainer = document.createElement('div');
         middleBannerContainer.className = 'banner-ad-container w-full flex justify-center my-6';
         middleBannerContainer.innerHTML = `
-          <a href="https://redirect01-z56s-git-main-benzee10000s-projects.vercel.app/" 
-             target="_blank" 
+          <a href="https://redirect01-z56s-git-main-benzee10000s-projects.vercel.app/"
+             target="_blank"
              rel="noopener noreferrer"
              class="banner-ad-link block w-full max-w-4xl transition-transform hover:scale-[1.02] active:scale-[0.98]"
              aria-label="Banner Advertisement - middle">
             <div class="banner-ad w-full h-40 md:h-48 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 relative">
-              <img 
-                src="https://i.postimg.cc/tJS7GjTW/140e925065074859ca5d7721f5bb3883-20.jpg" 
-                alt="Advertisement" 
+              <img
+                src="https://i.postimg.cc/tJS7GjTW/140e925065074859ca5d7721f5bb3883-20.jpg"
+                alt="Advertisement"
                 class="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -184,7 +193,7 @@ const jsonLd = {
             </div>
           </a>
         `;
-        
+
         // Insert after the target element
         targetElement.parentNode.insertBefore(middleBannerContainer, targetElement.nextSibling);
       }
@@ -194,11 +203,11 @@ const jsonLd = {
 
 <style>
   .banner-ad {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667ea 0%, #764ba2 100%);
     position: relative;
     overflow: hidden;
   }
-  
+
   .banner-ad::before {
     content: '';
     position: absolute;
@@ -209,7 +218,7 @@ const jsonLd = {
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
     transition: left 0.5s;
   }
-  
+
   .banner-ad-link:hover .banner-ad::before {
     left: 100%;
   }
