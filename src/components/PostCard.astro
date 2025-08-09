@@ -42,40 +42,40 @@ const coverWidth = "28%";
 
 const { remarkPluginFrontmatter } = await entry.render();
 ---
-<div class:list={["gallery-card relative w-full min-h-80 md:h-96 rounded-[var(--radius-large)] overflow-hidden group cursor-pointer", className]} style={style}>
-    <a href={url} class="block w-full h-full relative">
-        <!-- Background Image -->
-        {hasCover ? (
-            <ImageWrapper 
-                src={image} 
-                basePath={path.join("content/posts/", getDir(entry.id))} 
-                alt="Cover Image of the Post"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-        ) : (
-            <div class="w-full h-full bg-gradient-to-br from-[var(--primary)] to-[var(--primary-darker)] opacity-80"></div>
-        )}
+<div class="gallery-card relative w-full min-h-80 md:h-96 rounded-[var(--radius-large)] overflow-hidden group cursor-pointer" style={`animation-delay: calc(var(--content-delay) + ${index * 50}ms)`}>
+  <a href={getPostUrlBySlug(entry.slug)} class="block w-full h-full relative">
+    <!-- Background Image -->
+    {entry.data.image ? (
+      <ImageWrapper 
+        src={entry.data.image} 
+        basePath={path.join("content/posts/", getDir(entry.slug))} 
+        alt={`Cover image for ${entry.data.title}`}
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+    ) : (
+      <div class="w-full h-full bg-gradient-to-br from-[var(--primary)] to-[var(--primary-darker)] opacity-80"></div>
+    )}
 
-        <!-- Dark Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80"></div>
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-80"></div>
 
-        <!-- Premium Access Teaser -->
-        <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-            <div class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold pulse-animation">
-                🔥 Premium
-            </div>
-        </div>
+    <!-- Premium Access Teaser -->
+    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+      <div class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold pulse-animation">
+        🔥 Premium
+      </div>
+    </div>
 
-        <!-- Content -->
-        <div class="absolute bottom-0 left-0 right-0 p-6">
-            <h2 class="text-white text-xl md:text-2xl font-bold leading-tight mb-2 line-clamp-2 group-hover:text-blue-200 transition-colors duration-300">
-                {entry.data.title}
-            </h2>
-            <div class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                Click for exclusive content ✨
-            </div>
-        </div>
-    </a>
+    <!-- Content -->
+    <div class="absolute bottom-0 left-0 right-0 p-6">
+      <h2 class="text-white text-xl md:text-2xl font-bold leading-tight mb-2 line-clamp-2 group-hover:text-blue-200 transition-colors duration-300">
+        {entry.data.title}
+      </h2>
+      <div class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+        Click for exclusive content ✨
+      </div>
+    </div>
+  </a>
 </div>
 <div class="transition border-t-[1px] border-dashed mx-6 border-black/10 dark:border-white/[0.15] last:border-t-0 md:hidden"></div>
 
