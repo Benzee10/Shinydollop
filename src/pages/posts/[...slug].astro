@@ -31,13 +31,7 @@ const { Content, headings } = await entry.render();
 const { remarkPluginFrontmatter } = await entry.render();
 
 // Find similar posts
-const similarPosts = findSimilarPosts(entry, allPosts, 5);
-
-// Debug logging (remove this later)
-console.log('Post page - Current post:', entry.slug);
-console.log('Post page - Total posts:', allPosts.length);
-console.log('Post page - Similar posts found:', similarPosts.length);
-console.log('Post page - Similar posts:', similarPosts);
+const similarPosts = findSimilarPosts(entry, allPosts, 4);
 
 const jsonLd = {
 	"@context": "https://schema.org",

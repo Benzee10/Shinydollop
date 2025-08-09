@@ -1,3 +1,4 @@
+
 import type { CollectionEntry } from "astro:content";
 
 export interface SimilarPost {
@@ -9,7 +10,7 @@ export interface SimilarPost {
 export function findSimilarPosts(
   currentPost: CollectionEntry<"posts">,
   allPosts: CollectionEntry<"posts">[],
-  limit: number = 3
+  limit: number = 4
 ): SimilarPost[] {
   if (!currentPost || !allPosts || allPosts.length === 0) {
     return [];
@@ -29,25 +30,23 @@ export function findSimilarPosts(
   }
 
   // Calculate similarity scores
-  const similarPosts = otherPosts.map(post => {
+  const postsWithScores = otherPosts.map(post => {
     let similarity = 0;
     const postTags = post.data.tags || [];
 
-    // Category match gives high score
+    // Category match gives highest score
     if (post.data.category === currentCategory) {
-      similarity += 3;
+      similarity += 5;
     }
 
     // Tag matches
     const commonTags = currentTags.filter(tag => 
       postTags.includes(tag)
     );
-    similarity += commonTags.length;
+    similarity += commonTags.length * 2;
 
-    // If no similarity found, give a small random score for variety
-    if (similarity === 0) {
-      similarity = Math.random() * 0.5;
-    }
+    // Base similarity for variety
+    similarity += Math.random() * 0.1;
 
     return {
       slug: post.slug,
@@ -56,8 +55,32 @@ export function findSimilarPosts(
     };
   });
 
-  // Sort by similarity and limit results
-  return similarPosts
-    .sort((a, b) => b.similarity - a.similarity)
-    .slice(0, limit);
+  // Sort by similarity and get recent posts if no matches
+  const sortedPosts = postsWithScores.sort((a, b) => {
+    if (b.similarity !== a.similarity) {
+      return b.similarity - a.similarity;
+    }
+    // If similarity is equal, prefer more recent posts
+    return new Date(b.data.published).getTime() - new Date(a.data.published).getTime();
+  });
+
+  // Always return at least some posts (most recent if no similarities found)
+  const result = sortedPosts.slice(0, limit);
+  
+  // If we don't have enough similar posts, fill with recent posts
+  if (result.length < limit && result.length < otherPosts.length) {
+    const recentPosts = otherPosts
+      .filter(post => !result.some(r => r.slug === post.slug))
+      .sort((a, b) => new Date(b.data.published).getTime() - new Date(a.data.published).getTime())
+      .slice(0, limit - result.length)
+      .map(post => ({
+        slug: post.slug,
+        data: post.data,
+        similarity: 0.1
+      }));
+    
+    result.push(...recentPosts);
+  }
+
+  return result;
 }
