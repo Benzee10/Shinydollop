@@ -9,6 +9,7 @@ import GlobalStyles from "@components/GlobalStyles.astro";
 import VideoWidget from "@components/VideoWidget.svelte";
 import DailyPopup from "@components/DailyPopup.svelte";
 import ExitIntentPopup from "@components/ExitIntentPopup.svelte";
+import StickyCTA from "@components/StickyCTA.astro";
 import { profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
@@ -176,6 +177,9 @@ const bannerOffset =
 
 		<!-- Exit Intent Popup -->
 		<ExitIntentPopup client:load />
+
+		<!-- Sticky CTA Button -->
+		<StickyCTA />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
