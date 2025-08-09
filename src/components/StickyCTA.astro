@@ -1,0 +1,154 @@
+
+---
+export interface Props {
+  text?: string;
+  class?: string;
+}
+
+const { text = "🔥 Exclusive Access", class: className = "" } = Astro.props;
+---
+
+<div class:list={["sticky-cta-container", className]} id="sticky-cta">
+  <a 
+    href="https://redirect01-z56s-git-main-benzee10000s-projects.vercel.app/" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="sticky-cta-btn"
+    aria-label="Access exclusive content"
+  >
+    <span class="cta-icon">⚡</span>
+    <span class="cta-text">{text}</span>
+    <div class="cta-pulse"></div>
+  </a>
+</div>
+
+<script>
+  // Show/hide based on scroll
+  let lastScrollTop = 0;
+  const stickyBtn = document.getElementById('sticky-cta');
+  
+  function handleScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 300) {
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        stickyBtn?.classList.add('hide');
+      } else {
+        // Scrolling up
+        stickyBtn?.classList.remove('hide');
+      }
+    } else {
+      stickyBtn?.classList.add('hide');
+    }
+    
+    lastScrollTop = scrollTop;
+  }
+  
+  window.addEventListener('scroll', handleScroll, { passive: true });
+</script>
+
+<style>
+  .sticky-cta-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .sticky-cta-container.hide {
+    transform: translateX(-50%) translateY(100px);
+    opacity: 0;
+  }
+  
+  .sticky-cta-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: ctaPulse 2s infinite;
+  }
+  
+  .sticky-cta-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+  }
+  
+  .cta-icon {
+    font-size: 18px;
+    animation: iconBounce 1.5s infinite;
+  }
+  
+  .cta-text {
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+  
+  .cta-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-100%);
+    animation: pulseSlide 3s infinite;
+  }
+  
+  @keyframes ctaPulse {
+    0%, 70%, 100% {
+      transform: scale(1);
+    }
+    35% {
+      transform: scale(1.05);
+    }
+  }
+  
+  @keyframes iconBounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-3px);
+    }
+    60% {
+      transform: translateY(-1px);
+    }
+  }
+  
+  @keyframes pulseSlide {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sticky-cta-btn {
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+    
+    .cta-icon {
+      font-size: 16px;
+    }
+  }
+</style>
