@@ -50,6 +50,11 @@ if (entry.data.image) {
 	}
 }
 
+// Debug: Log the OG image URL
+console.log(`Post: ${entry.data.title}`);
+console.log(`Original image: ${entry.data.image}`);
+console.log(`Generated OG image URL: ${ogImageUrl}`);
+
 // Generate short description for Open Graph (under 150 characters)
 const ogDescription = entry.data.description 
 	? (entry.data.description.length > 150 
@@ -86,15 +91,17 @@ const jsonLd = {
     <!-- Open Graph Meta Tags -->
     <meta slot="head" property="og:title" content={entry.data.title} />
     <meta slot="head" property="og:description" content={ogDescription} />
+    <meta slot="head" property="og:url" content={postUrl} />
+    <meta slot="head" property="og:type" content="article" />
+    <meta slot="head" property="og:site_name" content={siteConfig.title} />
     {ogImageUrl && (
         <>
             <meta slot="head" property="og:image" content={ogImageUrl} />
             <meta slot="head" property="og:image:width" content="1200" />
             <meta slot="head" property="og:image:height" content="630" />
+            <meta slot="head" property="og:image:type" content="image/jpeg" />
         </>
     )}
-    <meta slot="head" property="og:url" content={postUrl} />
-    <meta slot="head" property="og:type" content="article" />
     <meta slot="head" property="article:published_time" content={entry.data.published.toISOString()} />
     {entry.data.updated && <meta slot="head" property="article:modified_time" content={entry.data.updated.toISOString()} />}
     {entry.data.tags && entry.data.tags.map((tag: string) => (
