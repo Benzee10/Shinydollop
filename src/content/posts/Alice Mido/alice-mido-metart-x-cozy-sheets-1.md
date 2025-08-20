@@ -2,7 +2,7 @@
 title: "Alice Mido in Metart X set *Cozy Sheets 1*"
 description: "Alice Mido captivates in Metart X set *Cozy Sheets 1* — warmth, intimacy, and sensual allure."
 published: 2025-08-20T15:40:00
-image: "https://cdn.elitebabes.com/content/250695/0014-01_1200.jpg"
+image: "https://cdn.elitebabes.com/content/250695/0014-02_1200.jpg"
 category: "Metart X"
 tags: ["Alice Mido", "Metart X", "Cozy Sheets 1", "Erotic", "Sensual"]
 ---
