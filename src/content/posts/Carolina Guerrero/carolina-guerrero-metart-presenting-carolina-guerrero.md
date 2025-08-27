@@ -2,7 +2,7 @@
 title: "Carolina Guerrero in MetArt set *Presenting Carolina Guerrero*"
 description: "Carolina Guerrero shines in MetArt’s *Presenting Carolina Guerrero* — a graceful blend of elegance, artistry, and intimate presence."
 published: 2025-08-27T09:10:00
-image: "https://cdn.elitebabes.com/content/250846/0010-01_1200.jpg"
+image: "https://i.postimg.cc/1zscxS0t/Screenshot-20250827-093150-Chrome.jpg"
 category: "Metart"
 tags: ["Carolina Guerrero", "MetArt", "Presenting Carolina Guerrero", "Erotic", "Sensual"]
 ---
