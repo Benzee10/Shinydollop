@@ -141,13 +141,57 @@ const { currentModel, category } = Astro.props;
   @media (max-width: 768px) {
     .smart-rec-content {
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.75rem;
       text-align: center;
+      padding: 0.75rem 1rem;
     }
     
     .smart-rec-text {
       flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .smart-rec-icon {
+      font-size: 1.5rem;
+    }
+    
+    .smart-rec-message strong {
+      font-size: 1rem;
+    }
+    
+    .smart-rec-message p {
+      font-size: 0.8rem;
+    }
+    
+    .smart-rec-button {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      border-radius: 20px;
+    }
+    
+    .smart-rec-close {
+      font-size: 1.25rem;
+      padding: 0.25rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .smart-rec-content {
+      padding: 0.5rem;
       gap: 0.5rem;
+    }
+    
+    .smart-rec-message strong {
+      font-size: 0.9rem;
+    }
+    
+    .smart-rec-message p {
+      font-size: 0.75rem;
+    }
+    
+    .smart-rec-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
     }
   }
 </style>
@@ -183,10 +227,18 @@ const { currentModel, category } = Astro.props;
       checkEngagement();
     }
     
-    // Track click engagement
+    // Track click/touch engagement
     function handleClick(e) {
       if (e.target.tagName === 'IMG' || e.target.closest('.post-card') || e.target.closest('a')) {
         engagementScore += 25;
+        checkEngagement();
+      }
+    }
+    
+    // Mobile-specific touch tracking
+    function handleTouchStart(e) {
+      if (e.target.tagName === 'IMG' || e.target.closest('.post-card') || e.target.closest('a')) {
+        engagementScore += 15;
         checkEngagement();
       }
     }
@@ -222,6 +274,7 @@ const { currentModel, category } = Astro.props;
     // Event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
     document.addEventListener('click', handleClick);
+    document.addEventListener('touchstart', handleTouchStart, { passive: true });
     
     // Check engagement every 10 seconds
     setInterval(checkEngagement, 10000);

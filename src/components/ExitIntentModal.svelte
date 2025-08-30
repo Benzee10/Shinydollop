@@ -8,12 +8,47 @@
   let hasShown = false;
   
   onMount(() => {
+    let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    let mobileTimer;
+    
     const handleMouseLeave = (e) => {
-      if (e.clientY <= 0 && !hasShown) {
+      if (e.clientY <= 0 && !hasShown && !isMobile) {
         showModal = true;
         hasShown = true;
         startCountdown();
       }
+    };
+    
+    // Mobile-specific exit intent detection
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden' && !hasShown && isMobile) {
+        showModal = true;
+        hasShown = true;
+        startCountdown();
+      }
+    };
+    
+    // Mobile scroll-based exit intent (when user scrolls up rapidly)
+    let lastScrollY = window.scrollY;
+    const handleMobileScroll = () => {
+      if (!isMobile || hasShown) return;
+      
+      const currentScrollY = window.scrollY;
+      const scrollDiff = lastScrollY - currentScrollY;
+      
+      // If user scrolls up rapidly (more than 100px) near the top
+      if (scrollDiff > 100 && currentScrollY < 200) {
+        clearTimeout(mobileTimer);
+        mobileTimer = setTimeout(() => {
+          if (!hasShown) {
+            showModal = true;
+            hasShown = true;
+            startCountdown();
+          }
+        }, 500);
+      }
+      
+      lastScrollY = currentScrollY;
     };
     
     const handleEscape = (e) => {
@@ -22,13 +57,27 @@
       }
     };
     
+    // Touch handling for modal overlay
+    const handleTouchStart = (e) => {
+      if (e.target.classList.contains('exit-modal-overlay')) {
+        e.preventDefault();
+      }
+    };
+    
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('keydown', handleEscape);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener('scroll', handleMobileScroll, { passive: true });
+    document.addEventListener('touchstart', handleTouchStart, { passive: false });
     
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener('scroll', handleMobileScroll);
+      document.removeEventListener('touchstart', handleTouchStart);
       if (intervalId) clearInterval(intervalId);
+      if (mobileTimer) clearTimeout(mobileTimer);
     };
   });
   
@@ -120,6 +169,8 @@
     position: relative;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     animation: slideUp 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
   }
   
   .exit-modal__close {
@@ -248,8 +299,67 @@
   }
   
   @media (max-width: 640px) {
+    .exit-modal {
+      width: 95%;
+      padding: 1.5rem;
+      margin: 1rem;
+      max-height: 85vh;
+      border-radius: 15px;
+    }
+    
     .exit-modal__benefits {
       grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    
+    .exit-modal__title {
+      font-size: 1.5rem;
+    }
+    
+    .exit-modal__subtitle {
+      font-size: 0.9rem;
+    }
+    
+    .timer-circle {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .timer-number {
+      font-size: 1.5rem;
+    }
+    
+    .benefit {
+      padding: 0.75rem;
+      font-size: 0.85rem;
+    }
+    
+    .btn-claim, .btn-close {
+      padding: 0.875rem 1.5rem;
+      font-size: 1rem;
+    }
+    
+    .exit-modal__close {
+      top: 0.75rem;
+      right: 0.75rem;
+      font-size: 1.75rem;
+      padding: 0.75rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .exit-modal {
+      width: 98%;
+      padding: 1rem;
+      margin: 0.5rem;
+    }
+    
+    .exit-modal__title {
+      font-size: 1.25rem;
+    }
+    
+    .exit-modal__icon {
+      font-size: 3rem;
     }
   }
 </style>
