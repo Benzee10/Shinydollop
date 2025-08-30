@@ -244,7 +244,7 @@ const { currentModel, category } = Astro.props;
     }
     
     function checkEngagement() {
-      if (!hasShownBar && (engagementScore >= 50 || timeOnPage >= 45)) {
+      if (!hasShownBar && (engagementScore >= 50 || timeOnPage >= 5)) {
         showRecommendationBar();
         hasShownBar = true;
       }
