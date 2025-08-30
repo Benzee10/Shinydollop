@@ -16,6 +16,7 @@ import RelatedGallery from "../../components/RelatedGallery.astro";
 import InContentCTA from '../../components/InContentCTA.astro';
 import ScrollProgressCTA from '../../components/ScrollProgressCTA.svelte';
 import ImageOverlayCTA from '../../components/ImageOverlayCTA.astro';
+import ContextualCTA from '../../components/ContextualCTA.astro';
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 import { findSimilarPosts } from "../../utils/similar-posts";
@@ -173,12 +174,21 @@ const jsonLd = {
             <!-- Top Banner Ad -->
             <BannerAd position="top" class="onload-animation" imageUrl="https://i.postimg.cc/B6gn21rJ/preview-1-1.jpg" />
 
+            <!-- Top Contextual CTA -->
+            <ContextualCTA context="gallery" position="top" />
+
             <Markdown class="mb-6 markdown-content onload-animation" id="post-content">
                 <Content />
             </Markdown>
 
+            <!-- Middle Contextual CTA -->
+            <ContextualCTA context="premium" position="middle" />
+
             <!-- Bottom Banner Ad -->
             <BannerAd position="bottom" class="onload-animation" imageUrl="https://i.postimg.cc/yx8Yj8Kc/preview-1.jpg" />
+
+            <!-- Bottom Contextual CTA -->
+            <ContextualCTA context="bio" position="bottom" />
 
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
