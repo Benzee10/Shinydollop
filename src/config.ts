@@ -46,7 +46,7 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.About,
 		{
 			name: "Sex Chat",
-			url: "https://redirect01-z56s-git-main-benzee10000s-projects.vercel.app/", // Internal links should not include the base path, as it is automatically added
+			url: "https://whatsappad.vercel.app/", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
