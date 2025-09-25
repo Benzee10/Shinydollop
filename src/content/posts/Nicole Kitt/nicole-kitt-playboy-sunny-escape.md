@@ -2,7 +2,7 @@
 title: "Nicole Kitt in Playboy set Sunny Escape"
 description: "Nicole Kitt shines in Playboy’s 'Sunny Escape' set, radiating elegance and charm under the golden sun."
 published: 2025-09-25T16:05:00
-image: "https://cdn.pmatehunter.com/content/240497/0001-01_1200.jpg"
+image: "https://cdn.pmatehunter.com/content/240497/0001-02_1200.jpg"
 category: Playboy
 tags: ["Nicole Kitt", "Sunny Escape", "Playboy", "Glamour", "Nude"]
 ---
