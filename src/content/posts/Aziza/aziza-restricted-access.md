@@ -1,7 +1,7 @@
 ---
 title: "Aziza in Playboy set *Restricted Access*"
 description: "Aziza turns up the allure in Playboy’s *Restricted Access* — bold, intimate, and breathtakingly gorgeous."
-published: 2025-10-29T09:35:00
+published: 2025-9-29T09:35:00
 image: "https://cdn.pmatehunter.com/content/230196/0002-01_1800.jpg"
 category: "Playboy"
 tags: ["Aziza", "Playboy", "Restricted Access", "Sensual", "Glamour"]
