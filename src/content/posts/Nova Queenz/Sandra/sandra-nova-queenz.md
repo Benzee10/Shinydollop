@@ -8,7 +8,7 @@ tags: ["Sandra", "Nova Queenz", "Nova Queenz", "Sensual", "Elegant"]
 ---
 
 👉 [Join us on WhatsApp](https://vibesnestz.vercel.app/)  
-👉 [Follow on Telegram](https://telegramchatz.vercel.app/)  
+👉 [Follow on Telegram](https://t.me/+62PxgSxDcZphZmFk)  
 🔞 [Watch Her Live on Cam](https://redirecting-kappa.vercel.app/)  
 
 ![Image 01](https://i.postimg.cc/CL6J0vdq/grok-image-1772790645019.jpg)
