@@ -13,7 +13,7 @@
     "https://images-assets.project1content.com/assets/brand/1241/tgp/3421/cell/page_1/adId_0/680b9991c5d4f2.73297277.mp4"
   ];
   
-  const redirectUrl = "https://whatsappad.vercel.app/";
+  const redirectUrl = "https://xxxpulse.vercel.app/";
   
   let currentVideoUrl = "";
   
